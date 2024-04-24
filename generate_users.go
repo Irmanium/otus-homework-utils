@@ -3,18 +3,17 @@ package main
 import (
 	"context"
 	"encoding/csv"
-	"golang.org/x/crypto/bcrypt"
 	"io"
 	"os"
 	"strings"
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
+	"golang.org/x/crypto/bcrypt"
 )
 
 const (
 	filePath      = "users.csv"
-	dbString      = "host=localhost user=postgres password=postgres dbname=postgres sslmode=disable"
 	registerQuery = `
 		INSERT INTO user_profile (id, first_name, second_name, birthdate, biography, city, password_hash)
 			VALUES ($1, $2, $3, $4, 'bio', $5, $6);`
@@ -69,3 +68,4 @@ func generateUsers() {
 		}
 	}
 }
+
